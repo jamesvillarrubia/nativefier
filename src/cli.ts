@@ -355,6 +355,11 @@ export function initArgs(argv: string[]): yargs.Argv<RawOptions> {
       description: 'disable domain-based matching on internal URLs',
       type: 'boolean',
     })
+    .option('strict-regex', {
+      default: false,
+      description: `Force strict matching to the internal-urls flag`,
+      type: 'boolean',
+    })
     .option('proxy-rules', {
       description:
         'proxy rules; see https://www.electronjs.org/docs/api/session#sessetproxyconfig',
@@ -365,6 +370,7 @@ export function initArgs(argv: string[]): yargs.Argv<RawOptions> {
         'block-external-urls',
         'internal-urls',
         'strict-internal-urls',
+        'strict-regex',
         'proxy-rules',
       ],
       decorateYargOptionGroup('URL Handling Options'),

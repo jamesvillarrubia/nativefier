@@ -63,6 +63,7 @@ function setNotificationCallback(
 
 function injectScripts(): void {
   const needToInject = fs.existsSync(INJECT_DIR);
+  log.debug('Injection function', INJECT_DIR, needToInject);
   if (!needToInject) {
     return;
   }

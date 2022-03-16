@@ -24,6 +24,7 @@ const {
       blockExternalUrls: boolean;
       internalUrls?: string | RegExp;
       targetUrl: string;
+      strictRegex: boolean;
     },
     event: unknown,
     urlToGo: string,
@@ -302,6 +303,7 @@ describe('onWillNavigate', () => {
     const options = {
       blockExternalUrls: false,
       targetUrl: originalURL,
+      strictRegex: false,
     };
     const event = { preventDefault };
     await onWillNavigate(options, event, internalURL);
@@ -315,6 +317,7 @@ describe('onWillNavigate', () => {
     const options = {
       blockExternalUrls: false,
       targetUrl: originalURL,
+      strictRegex: false,
     };
     const event = { preventDefault };
     await onWillNavigate(options, event, externalURL);
@@ -328,6 +331,7 @@ describe('onWillNavigate', () => {
     const options = {
       blockExternalUrls: true,
       targetUrl: originalURL,
+      strictRegex: false,
     };
     const event = { preventDefault };
     await onWillNavigate(options, event, externalURL);

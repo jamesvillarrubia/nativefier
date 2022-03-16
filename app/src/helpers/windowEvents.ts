@@ -79,6 +79,7 @@ export function onNewWindowHelper(
         urlToGo,
         options.internalUrls,
         options.strictInternalUrls,
+        options.strictRegex,
       )
     ) {
       preventDefault();
@@ -134,6 +135,7 @@ export function onWillNavigate(
       urlToGo,
       options.internalUrls,
       options.strictInternalUrls,
+      options.strictRegex,
     )
   ) {
     event.preventDefault();

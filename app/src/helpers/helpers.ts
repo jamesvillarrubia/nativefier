@@ -117,6 +117,7 @@ export function linkIsInternal(
   newUrl: string,
   internalUrlRegex: string | RegExp | undefined,
   isStrictInternalUrlsEnabled: boolean | undefined,
+  strictRegex = false,
 ): boolean {
   log.debug('linkIsInternal', { currentUrl, newUrl, internalUrlRegex });
   if (newUrl.split('#')[0] === 'about:blank') {
@@ -131,6 +132,11 @@ export function linkIsInternal(
     const regex = RegExp(internalUrlRegex);
     if (regex.test(newUrl)) {
       return true;
+    }
+    // if being strict, return true or false with only the regex match
+    // this enables subdomains to set as external despite matching in the domainify() code
+    if (strictRegex) {
+      return false;
     }
   }
 

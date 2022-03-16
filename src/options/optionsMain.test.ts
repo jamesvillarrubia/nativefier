@@ -47,6 +47,7 @@ const mockedAsyncConfig: AppOptions = {
     showMenuBar: false,
     singleInstance: false,
     strictInternalUrls: false,
+    strictRegex: false,
     titleBarStyle: undefined,
     tray: 'false',
     userAgent: undefined,

@@ -49,6 +49,7 @@ export interface AppOptions {
     inject?: string[];
     insecure: boolean;
     internalUrls?: string;
+    strictRegex?: boolean;
     lang?: string;
     maximize: boolean;
     nativefierVersion: string;
@@ -111,6 +112,7 @@ export type OutputOptions = NativefierOptions & {
   disableDevTools: boolean;
   fileDownloadOptions?: Record<string, unknown>;
   internalUrls: string | RegExp | undefined;
+  strictRegex?: boolean;
   isUpgrade: boolean;
   name: string;
   nativefierVersion: string;
@@ -168,6 +170,7 @@ export type RawOptions = {
   inject?: string[];
   insecure?: boolean;
   internalUrls?: string;
+  strictRegex?: boolean;
   lang?: string;
   maxHeight?: number;
   maximize?: boolean;
@@ -212,6 +215,7 @@ export type WindowOptions = {
   name: string;
   proxyRules?: string;
   show?: boolean;
+  strictRegex?: boolean;
   targetUrl: string;
   userAgent?: string;
   zoom: number;

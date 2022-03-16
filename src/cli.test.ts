@@ -121,6 +121,7 @@ describe('initArgs + parseArgs', () => {
     { arg: 'global-shortcuts', shortArg: '', value: 'shortcuts.json' },
     { arg: 'icon', shortArg: 'i', value: 'icon.png' },
     { arg: 'internal-urls', shortArg: '', value: '.*' },
+    { arg: 'strict-regex', shortArg: '', value: 'false' },
     { arg: 'lang', shortArg: '', value: 'fr' },
     { arg: 'name', shortArg: 'n', value: 'Google' },
     {

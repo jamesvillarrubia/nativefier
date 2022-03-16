@@ -46,7 +46,11 @@ describe('fields', () => {
         proxyRules: undefined,
         showMenuBar: false,
         singleInstance: false,
+<<<<<<< HEAD
         strictInternalUrls: false,
+=======
+        strictRegex: false,
+>>>>>>> 7af592e (working version)
         titleBarStyle: undefined,
         tray: 'false',
         userAgent: undefined,

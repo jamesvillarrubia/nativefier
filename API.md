@@ -5,15 +5,14 @@
 - [Table of Contents](#table-of-contents)
 - [Packaging Squirrel-based installers](#packaging-squirrel-based-installers)
 - [Command Line](#command-line)
-  - [Target Url](#target-url)
-  - [[dest]](#dest)
-  - [Help](#help)
-  - [Version](#version)
+    - [Target Url](#target-url)
+    - [[dest]](#dest)
+    - [Help](#help)
+    - [Version](#version)
   - [App Creation Options](#app-creation-options)
     - [[arch]](#arch)
     - [[conceal]](#conceal)
     - [[electron-version]](#electron-version)
-    - [[global-shortcuts]](#global-shortcuts)
     - [[icon]](#icon)
     - [[name]](#name)
     - [[no-overwrite]](#no-overwrite)
@@ -47,6 +46,7 @@
     - [[zoom]](#zoom)
   - [Internal Browser Options](#internal-browser-options)
     - [[file-download-options]](#file-download-options)
+    - [[global-shortcuts]](#global-shortcuts)
     - [[inject]](#inject)
     - [[lang]](#lang)
     - [[user-agent]](#user-agent)
@@ -57,11 +57,12 @@
   - [URL Handling Options](#url-handling-options)
     - [[block-external-urls]](#block-external-urls)
     - [[internal-urls]](#internal-urls)
-      - [[internal-login-pages]](#internal-login-pages)
+      - [Internal Login Pages](#internal-login-pages)
     - [[strict-internal-urls]](#strict-internal-urls)
+    - [[strict-regex]](#strict-regex)
     - [[proxy-rules]](#proxy-rules)
   - [Auth Options](#auth-options)
-    - [[basic-auth-username] and [basic-auth-password]](#basic-auth-username-and-basic-auth-password)
+    - [[[basic-auth-username] and [basic-auth-password]]](#basic-auth-username-and-basic-auth-password)
   - [Graphics Options](#graphics-options)
     - [[disable-gpu]](#disable-gpu)
     - [[enable-es3-apis]](#enable-es3-apis)
@@ -78,17 +79,18 @@
     - [[counter]](#counter)
     - [[darwin-dark-mode-support]](#darwin-dark-mode-support)
     - [[fast-quit]](#fast-quit)
-    - [[win32metadata]](#win32metadata)
   - [Debug Options](#debug-options)
     - [[crash-reporter]](#crash-reporter)
     - [[verbose]](#verbose)
     - [[quiet]](#quiet)
-  - [Flash Options (Deprecated)](#flash-options-deprecated)
+    - [[win32metadata]](#win32metadata)
+  - [Flash Options (DEPRECATED)](#flash-options-deprecated)
     - [[flash] and [flash-path] (DEPRECATED)](#flash-and-flash-path-deprecated)
 - [Programmatic API](#programmatic-api)
 - [Accessing The Electron Session](#accessing-the-electron-session)
   - [Important Note On funcArgs](#important-note-on-funcargs)
   - [session-interaction-reply](#session-interaction-reply)
+  - [Request IDs](#request-ids)
   - [Errors](#errors)
   - [Complex Return Values](#complex-return-values)
   - [Example](#example)
@@ -809,6 +811,21 @@ If you think this list is missing a login page that you think should be internal
 
 Disables base domain matching when determining if a link is internal.  Only the `--internal-urls` regex and login pages will be matched against, so `app.foo.com` will be external to `www.foo.com` unless it matches the `--internal-urls` regex.
 
+#### [strict-regex]
+
+```
+--strict-regex
+```
+
+Forces the `--internal-urls` flag to be strictly enforced.  This skips the `about:blank` logic. This also skips the subdomain matching magic, under the assumption that the regex for `--internal-urls` is sufficiently clear as to what is internal and what is not. Default: false
+
+Example:
+
+```bash
+nativefier https://calendar.google.com --internal-urls "(calendar|login|accounts).google\.*?" --strict-regex
+```
+
+Only allows the subdomains of calendar, login, and accounts to work as internals from inside Google Calendar's interface.
 
 #### [proxy-rules]
 
@@ -1068,6 +1085,7 @@ var options = {
   ignoreGpuBlacklist: false,
   enableEs3Apis: false,
   internalUrls: '.*?',
+  strictRegex: false,
   blockExternalUrls: false,
   insecure: false,
   honest: false,
