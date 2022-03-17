@@ -13,10 +13,11 @@ nativefier \
     --internal-urls "^http(s)?:\/\/(www|calendar|).?google\.com(?!\/url\?q=)" \
     --name "${NAME}" \
     --strict-regex \
-    -e 14.1.1 \
     --user-agent firefox \
     --browserwindow-options '{"webPreferences": {"nativeWindowOpen": true}}' \
     --inject ./calendar.js;
+        # -e 14.1.1 \
+
     
 
 # cp -r "./${NAME}-${ARCH}/${NAME}.app" "/Applications/${NAME}" ;
